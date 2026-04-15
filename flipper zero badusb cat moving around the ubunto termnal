@@ -1,0 +1,15 @@
+REM ================================
+REM  Flipper Zero BadUSB
+REM  Target: Ubuntu Linux
+REM  Effect: Bouncing Cat (No Color)
+REM ================================
+
+DELAY 1000
+
+REM Open GNOME Terminal
+CTRL ALT t
+DELAY 1500
+
+REM Bouncing cat - no color
+STRING x=2;y=2;dx=1;dy=1;f=0;while true;do clear;[ $f -eq 0 ]&&eyes="o     o"||eyes="-     -";[ $f -eq 0 ]&&msg="~ meow ~"||msg="~ purr ~";tput cup $y $x;printf "  /\_____/\ ";tput cup $((y+1)) $x;printf " ( $eyes )";tput cup $((y+2)) $x;printf " (  =^=   )";tput cup $((y+3)) $x;printf "  \______/ ";tput cup $((y+4)) $x;printf "  $msg  ";x=$((x+dx));y=$((y+dy));C=$(tput cols);R=$(tput lines);[ $x -ge $((C-12)) ]&&dx=-1;[ $x -le 1 ]&&dx=1;[ $y -ge $((R-6)) ]&&dy=-1;[ $y -le 1 ]&&dy=1;[ $f -eq 0 ]&&f=1||f=0;sleep 0.08;done
+ENTER
