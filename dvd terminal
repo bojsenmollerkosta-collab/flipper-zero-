@@ -1,0 +1,62 @@
+REM ================================
+REM  Flipper Zero BadUSB
+REM  Target: Ubuntu Linux
+REM  Effect: Bouncing DVD Logo
+REM ================================
+
+DELAY 1000
+
+REM Open terminal
+CTRL ALT t
+DELAY 1500
+
+REM Write script line by line
+STRING echo '#!/bin/bash' > /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'x=2;y=2;dx=1;dy=1' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'while true; do' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'clear' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'tput cup $y $x; printf " _____ "' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'tput cup $((y+1)) $x; printf "|     |"' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'tput cup $((y+2)) $x; printf "| DVD |"' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'tput cup $((y+3)) $x; printf "|_____|"' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'x=$((x+dx)); y=$((y+dy))' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'C=$(tput cols); R=$(tput lines)' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo '[ $x -ge $((C-8)) ] && dx=-1' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo '[ $x -le 0 ] && dx=1' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo '[ $y -ge $((R-5)) ] && dy=-1' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo '[ $y -le 0 ] && dy=1' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+STRING echo 'sleep 0.08; done' >> /tmp/dvd.sh
+ENTER
+DELAY 100
+
+REM Run it
+STRING chmod +x /tmp/dvd.sh && bash /tmp/dvd.sh
+ENTER
