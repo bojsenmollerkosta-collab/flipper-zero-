@@ -1,15 +1,74 @@
 REM ================================
 REM  Flipper Zero BadUSB
 REM  Target: Ubuntu Linux
-REM  Effect: Bouncing Cat (No Color)
+REM  Effect: Bouncing Cat
 REM ================================
 
 DELAY 1000
 
-REM Open GNOME Terminal
+REM Open terminal
 CTRL ALT t
 DELAY 1500
 
-REM Bouncing cat - no color
-STRING x=2;y=2;dx=1;dy=1;f=0;while true;do clear;[ $f -eq 0 ]&&eyes="o     o"||eyes="-     -";[ $f -eq 0 ]&&msg="~ meow ~"||msg="~ purr ~";tput cup $y $x;printf "  /\_____/\ ";tput cup $((y+1)) $x;printf " ( $eyes )";tput cup $((y+2)) $x;printf " (  =^=   )";tput cup $((y+3)) $x;printf "  \______/ ";tput cup $((y+4)) $x;printf "  $msg  ";x=$((x+dx));y=$((y+dy));C=$(tput cols);R=$(tput lines);[ $x -ge $((C-12)) ]&&dx=-1;[ $x -le 1 ]&&dx=1;[ $y -ge $((R-6)) ]&&dy=-1;[ $y -le 1 ]&&dy=1;[ $f -eq 0 ]&&f=1||f=0;sleep 0.08;done
+REM Write script to file line by line
+STRING echo '#!/bin/bash' > /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'x=2;y=2;dx=1;dy=1;f=0' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'while true; do' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'clear' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo '[ $f -eq 0 ] && eyes="o     o" || eyes="-     -"' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo '[ $f -eq 0 ] && msg="~ meow ~" || msg="~ purr ~"' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'tput cup $y $x; printf "  /\_____/\ "' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'tput cup $((y+1)) $x; printf " ( $eyes )"' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'tput cup $((y+2)) $x; printf " (  =^=   )"' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'tput cup $((y+3)) $x; printf "  \______/ "' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'tput cup $((y+4)) $x; printf "  $msg  "' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'x=$((x+dx)); y=$((y+dy))' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'C=$(tput cols); R=$(tput lines)' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo '[ $x -ge $((C-12)) ] && dx=-1' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo '[ $x -le 1 ] && dx=1' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo '[ $y -ge $((R-6)) ] && dy=-1' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo '[ $y -le 1 ] && dy=1' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo '[ $f -eq 0 ] && f=1 || f=0' >> /tmp/cat.sh
+ENTER
+DELAY 100
+STRING echo 'sleep 0.08; done' >> /tmp/cat.sh
+ENTER
+DELAY 100
+
+REM Make executable and run
+STRING chmod +x /tmp/cat.sh && bash /tmp/cat.sh
 ENTER
