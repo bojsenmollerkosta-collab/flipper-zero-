@@ -53,7 +53,7 @@ DELAY 100
 STRING echo '[ $y -le 0 ] && dy=1' >> /tmp/dvd.sh
 ENTER
 DELAY 100
-STRING echo 'sleep 0.08; done' >> /tmp/dvd.sh
+STRING echo 'sleep 0.15; done' >> /tmp/dvd.sh
 ENTER
 DELAY 100
 
